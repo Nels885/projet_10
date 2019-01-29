@@ -1,3 +1,5 @@
+pur_beurre/settings/production.py
+pur_beurre/staticfiles/
 *__pycache__*
 .coverage
 htmlcov/*
