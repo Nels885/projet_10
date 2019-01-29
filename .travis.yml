@@ -18,4 +18,5 @@ services:
 
 # command to run tests
 script:
-  - ./manage.py test
+  - coverage run --source="." manage.py test
+  - coverage report
