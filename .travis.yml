@@ -1,0 +1,21 @@
+language: python
+python:
+  - "3.6"
+
+# command to install dependencies
+before_script:
+  - pip install -r requirements.txt
+
+# safelist
+branches:
+  only:
+    - dev
+
+env: DJANGO_SETTINGS_MODULE="pur_beurre.settings"
+
+services:
+  - postgresql
+
+# command to run tests
+script:
+  - ./manage.py test
