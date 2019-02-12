@@ -6,3 +6,4 @@ htmlcov/*
 .idea/*
 venv/*
 db.*
+newrelic.ini
