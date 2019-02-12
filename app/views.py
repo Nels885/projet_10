@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+import logging
+
 from .models import Product
 
 from .forms import RegistrationForm
@@ -40,6 +42,9 @@ def search(request):
     :return:
         Results page or Index page if no found
     """
+    logging.info('New search', exc_info=True, extra={
+        'request': request,
+    })
     query = request.GET.get('query')
     if not query:
         return redirect('/')
