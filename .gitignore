@@ -6,4 +6,3 @@ htmlcov/*
 .idea/*
 venv/*
 db.*
-database_conf
