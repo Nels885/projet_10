@@ -73,8 +73,8 @@ class Command(BaseCommand):
                         log.error(f"{err}")
                         capture_exception(err)
             nb_prod_after = Product.objects.count()
-            capture_message(print(f"Nombre de produits ajoutés :    {nb_prod_after - nb_prod_before}"))
-            capture_message(print(f"Nombre de produits total :      {nb_prod_after}"))
+            capture_message(f"Nombre de produits ajoutés :    {nb_prod_after - nb_prod_before}", level="info")
+            capture_message(f"Nombre de produits total :      {nb_prod_after}", level="info")
 
         elif options['delete']:
             Product.objects.all().delete()
