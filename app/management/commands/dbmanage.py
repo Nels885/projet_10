@@ -3,8 +3,6 @@ from django.core.management.color import no_style
 from django.db.utils import IntegrityError
 from django.db import connection
 
-from sentry_sdk import capture_exception, capture_message
-
 from app.models import Product
 from save.models import Backup
 
@@ -12,6 +10,8 @@ import logging as log
 
 from ._apirest import ApiRest
 from ._glob import Glob
+
+logger = log.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -68,13 +68,11 @@ class Command(BaseCommand):
                     except KeyError as err:
                         msg = f"Manque la valeur: {err}"
                         log.error(msg)
-                        capture_exception(msg)
                     except IntegrityError as err:
                         log.error(f"{err}")
-                        capture_exception(err)
             nb_prod_after = Product.objects.count()
-            capture_message(f"Nombre de produits ajoutés :    {nb_prod_after - nb_prod_before}", level="info")
-            capture_message(f"Nombre de produits total :      {nb_prod_after}", level="info")
+            logger.info(f"Nombre de produits ajoutés :    {nb_prod_after - nb_prod_before}", exc_info=True)
+            logger.info(f"Nombre de produits total :      {nb_prod_after}", exc_info=True)
 
         elif options['delete']:
             Product.objects.all().delete()
