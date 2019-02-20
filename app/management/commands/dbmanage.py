@@ -1,4 +1,4 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.core.management.color import no_style
 from django.db.utils import IntegrityError
 from django.db import connection
@@ -10,8 +10,6 @@ import logging as log
 
 from ._apirest import ApiRest
 from ._glob import Glob
-
-logger = log.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -66,13 +64,14 @@ class Command(BaseCommand):
                             category=cat_name
                         )
                     except KeyError as err:
-                        msg = f"Manque la valeur: {err}"
-                        log.error(msg)
+                        log.debug(f"Manque la valeur: {err}")
                     except IntegrityError as err:
-                        log.error(f"{err}")
+                        log.debug(f"{err}")
             nb_prod_after = Product.objects.count()
-            logger.info(f"Nombre de produits ajoutés :    {nb_prod_after - nb_prod_before}", exc_info=True)
-            logger.info(f"Nombre de produits total :      {nb_prod_after}", exc_info=True)
+            self.stdout.write(self.style.SUCCESS(
+                f"Nombre de produits ajoutés :    {nb_prod_after - nb_prod_before}\n"
+                f"Nombre de produits total :      {nb_prod_after}")
+            )
 
         elif options['delete']:
             Product.objects.all().delete()

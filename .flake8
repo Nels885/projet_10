@@ -1,0 +1,11 @@
+[flake8]
+exclude =
+    .git,
+    __pycache__,
+    migrations,
+    venv,
+    production.py,
+    travis.py,
+    admin.py,
+    tests.py,
+max-line-length = 140

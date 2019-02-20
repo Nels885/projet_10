@@ -8,6 +8,7 @@ from .models import Product
 
 from .forms import RegistrationForm
 
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -42,7 +43,7 @@ def search(request):
     :return:
         Results page or Index page if no found
     """
-    logging.info('New search', exc_info=True, extra={
+    logger.info('New search', exc_info=True, extra={
         'request': request,
     })
     query = request.GET.get('query')
