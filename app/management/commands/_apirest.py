@@ -39,9 +39,9 @@ class ApiRest:
             data in json format
         """
         r = requests.get(f"{self.cmdRequest}{self.tag_0}{tag}")
-        self.log.info("=============================================================\n"
-                      "# Status Code: %s #\n"
-                      "# Headers: %s #\n" % (r.status_code, r.headers['content-type']))
+        self.log.debug("=============================================================\n"
+                       "# Status Code: %s #\n"
+                       "# Headers: %s #\n" % (r.status_code, r.headers['content-type']))
         return r.json()[self.data]
 
     def convert_data(self, result, data_name):
@@ -69,8 +69,6 @@ class ApiRest:
                     case = ", ".join(case)
             except KeyError as err:
                 case = "NULL"
-                self.log.info("*** Valeur absente dans OFF: %s", err)
+                self.log.debug("*** Valeur absente dans OFF: %s", err)
             val_product.append(case)
         return val_product
-
-

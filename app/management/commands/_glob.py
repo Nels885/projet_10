@@ -27,5 +27,5 @@ class Glob:
         'Camemberts', 'Fromages double crème', 'Fromages blancs', 'Emmentals râpés', 'Munster', 'Fromages apéritif',
         'Salades composées', 'Conserves', 'Salades', 'Saucissons', 'Jambons', 'Produits à tartiner salés',
         'Légumes frais', 'Sauces', 'Produits de la mer', 'Cornichons', 'Epices', 'Bonbons', 'Viandes surgelées',
-        'vin',  'Pizzas', 'Chips', 'Apéritif', 'Barres chocolatées'
+        'vin', 'Pizzas', 'Chips', 'Apéritif', 'Barres chocolatées',
     )
